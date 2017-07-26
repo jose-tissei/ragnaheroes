@@ -53,6 +53,8 @@
   <ItemGroup>
      <Compile Include="Assets\UI\Draggable.cs" />
      <Compile Include="Assets\UI\DropZone.cs" />
+     <Compile Include="Assets\UI\FactoryPlaceHolder.cs" />
+     <Compile Include="Assets\UI\ICard.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
