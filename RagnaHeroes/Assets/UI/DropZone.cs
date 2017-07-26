@@ -4,14 +4,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DropZone : MonoBehaviour, IDropHandler {
+public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler {
     public void OnDrop(PointerEventData eventData)
     {
-		var objectBeingDragged = eventData.pointerDrag.GetComponent<Draggable>();
+        ForCardIn(eventData, card => card.WasDropped = true);
+    }
 
-		if(objectBeingDragged == null) return;
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        ForCardIn(eventData, card => card.SetDragDestination(transform));
+    }
 
-        objectBeingDragged.transform.SetParent(transform);
-		objectBeingDragged.Dropped = true;
+    private void ForCardIn(PointerEventData eventData, Action<ICard> action)
+    {
+        if(eventData.pointerDrag == null) return;
+
+		var card = eventData.pointerDrag.GetComponent<ICard>();
+
+		if(card == null) return;
+
+        action(card);
     }
 }
