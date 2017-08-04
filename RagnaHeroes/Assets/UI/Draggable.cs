@@ -4,18 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Zenject;
 
 public class Draggable : MonoBehaviour, ICard
 {
-    private readonly FactoryPlaceHolder factoryPlaceHolder;
+    private readonly IFactoryPlaceHolder factoryPlaceHolder;
+    
+    [Inject(Id = "SceneCanvas")]
+    public readonly Canvas sceneCanvas;
     private GameObject placeHolder;
     private Transform dragOrigin;
     private Transform dragDestination;
     public bool WasDropped {get;set;}
 
-    public Draggable()
+    public Draggable(IFactoryPlaceHolder factoryPlaceHolder, Canvas sceneCanvas)
     {
-        factoryPlaceHolder = new FactoryPlaceHolder();
+        this.factoryPlaceHolder = factoryPlaceHolder;
+        this.sceneCanvas = sceneCanvas;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -26,7 +31,7 @@ public class Draggable : MonoBehaviour, ICard
         dragOrigin = transform.parent;
         placeHolder = factoryPlaceHolder.CreatePlaceHolder(this);
         
-        transform.SetParent(GameObject.Find("Canvas").GetComponent<Canvas>().transform);
+        transform.SetParent(sceneCanvas.transform);
         WasDropped = false;
         GetComponent<CanvasGroup>().blocksRaycasts = false;
     }

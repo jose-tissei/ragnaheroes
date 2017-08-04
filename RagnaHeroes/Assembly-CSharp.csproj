@@ -51,10 +51,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\SceneInstaller.cs" />
      <Compile Include="Assets\UI\Draggable.cs" />
      <Compile Include="Assets\UI\DropZone.cs" />
      <Compile Include="Assets\UI\FactoryPlaceHolder.cs" />
      <Compile Include="Assets\UI\ICard.cs" />
+     <Compile Include="Assets\UI\IFactoryPlaceHolder.cs" />
+     <None Include="Assets\Plugins\Zenject\LICENSE.txt" />
+     <None Include="Assets\Plugins\Zenject\Version.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -76,6 +80,10 @@
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{C5161C09-2B9E-5B82-457D-06EF69738C64}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
